@@ -92,6 +92,7 @@
 
 let pokeball = document.querySelector('#pokeball');
 let container = document.querySelector('#container')
+let list = document.querySelector('#list');
 
 let randNum = () => {
     return Math.floor(Math.random() * 100);
@@ -99,11 +100,15 @@ let randNum = () => {
 let num = randNum();
 
 const getPokeData = async () => {
-    let num = randNum();
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`);
-    const data = await res.json();
-    return data;
+    try { 
+        let num = randNum();
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`);
+        const data = await res.json();
+        return data;
+    } catch {
+        console.log('error', e);
     }
+}
 
 const getPokeGame = async () => {
     let pokeData = await getPokeData();
@@ -118,6 +123,22 @@ const getPokeGame = async () => {
     let imgName = document.createElement('span');
     imgName.innerHTML = `You caught a ${pokeData.name}`
     container.append(imgName);
+    
+    let keepButton = document.createElement('button');
+    keepButton.innerHTML= 'keep';
+    container.append(keepButton);
+
+    keepButton.addEventListener('click', ()=> {
+        console.log('keep!')
+    })
+
+    let failButton = document.createElement('button');
+    failButton.innerHTML= 'delete';
+    container.append(failButton);
+
+    failButton.addEventListener('click', ()=> {
+        console.log('deleted')
+})
 }
 
 const pokeFail = () => {
@@ -132,10 +153,20 @@ const pokeFail = () => {
     imgName.innerHTML = 'Oh no, your Pokemon got away!'
     container.append(imgName);
 
+    let failButton = document.createElement('button');
+    failButton.innerHTML= 'delete';
+    container.append(failButton);
+
+    failButton.addEventListener('click', ()=> {
+        console.log('deleted')
+    })
+}
+
+const makeKeepButton = () => {
     let button = document.createElement('button');
-    button.innerHTML= 'delete';
-    newDiv.append(button);
-} 
+    button.innerHTML= 'Keep';
+    container.append(button);
+}
 
 let randNum2 = () => {
     return Math.floor(Math.random() * 100);
@@ -153,4 +184,3 @@ const pokeTimer = () => {
 }
 
 pokeball.addEventListener('click', pokeTimer);
-
