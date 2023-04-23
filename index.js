@@ -97,12 +97,10 @@ let list = document.querySelector('#list');
 let randNum = () => {
     return Math.floor(Math.random() * 100);
 }
-let num = randNum();
 
 const getPokeData = async () => {
     try { 
-        let num = randNum();
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${num}`);
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${randNum()}`);
         const data = await res.json();
         return data;
     } catch {
@@ -144,8 +142,8 @@ const getPokeGame = async () => {
 const pokeFail = () => {
     let newDiv = document.createElement('div');
     let newImage = document.createElement('img');
-    newImage.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDEgMP1QV_sutwm_2CrQpnAdHAODtWzEfTtQ&usqp=CAU';
-    newImage.style.width = '100px';
+    newImage.src = 'pokeball-open.PNG';
+    newImage.style.width = '200px';
     newDiv.append(newImage);
     container.append(newDiv);
 

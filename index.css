@@ -1,3 +1,19 @@
+html {
+    height: 100%
+}
+
+body {
+    background-image: linear-gradient(white, rgb(199, 247, 193), rgb(1, 91, 1), green);
+}
+
+header {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
 #container {
     text-align: center;
 }
@@ -7,3 +23,15 @@
     text-align: center;
 }
 
+.pokeball-flex {
+    display: flex;
+    justify-content: center;
+}
+
+#pokeball {
+    width: 150px;
+}
+
+#pokeball:hover {
+    width: 180px;
+}
